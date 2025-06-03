@@ -1,0 +1,72 @@
+
+
+C - datatypes
+------------
+int a = 10;
+int a[3] ={10,20,30};
+float b = 345.34;
+char
+double
+long
+short
+
+
+python - objects
+-----
+
+number
+-------
+a = 10
+a = 45.43
+b = 345.34
+val = 43.43
+aval = 45.43
+
+
+string
+-------
+string is defined in single or double or triple quotes.
+
+aname = 'python progrogramming'
+bname = "java programming"
+cname = """unix shell scripting"""
+dname = '''machine learning'''
+
+
+list ( array in C )
+-----
+list contains set of elements.
+Elements can be set of numbers or strings or any combination.
+list is defined in [].
+
+alist = [10,20,30,40]
+blist = ["python","java","unix"]
+clist = [45,43.45,"python"]
+dlist = [["rita",30],["sita",32],["gita",34]]  # list of lists
+
+
+tuple ( immutable , unchangeable , uneditable)
+-------
+tuple contains set of elements.
+Elements can be set of numbers or strings or any combination.
+tuple is defined in ().
+***** Elements inside tuple cannot be modified DIRECTLY *****
+
+atup = (45,43,32,45,43)
+btup = ("java","genai","datascience")
+ctup = (45,5.34,"java","unix")
+dtup = (("ravi",30),("sita",4))
+
+
+dictionary
+
+
+set
+
+
+
+
+
+task =      core programming    +  libraries    + domain 
+           ( procedural or
+             object oriented )
