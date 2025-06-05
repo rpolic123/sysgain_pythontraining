@@ -101,3 +101,46 @@ aset = {10,10,10,20,20,30,30,"unix","unix","java",45.43}
 task =      core programming    +  libraries    + domain 
            ( procedural or
              object oriented )
+
+
+conditions
+-----------
+simple if
+if else 
+if-elif-elif-elif-elif-elif-else 
+
+
+level1
+level1
+level1
+level1
+if cond:
+    level2
+    level2
+    level2
+
+level1
+level1
+level1 
+
+
+
+if ( 1 < 2)  {
+    printf()
+ printf()
+          printf()
+}
+
+
+control statements
+------------------
+for loop
+while loop 
+
+
+in C---> NOT allowed in python
+-----
+for ( i = 1 ; i<=10 ; i++)
+{
+
+}
