@@ -68,3 +68,177 @@ print(len(aname.rstrip()))
 print(len(aname.lstrip()))
 
 print(name.split(" "))  # converting string to the list
+
+
+
+aname = " python  "
+print(len(aname))
+print(aname.strip())  # will remove whitespaces at both ends
+print(len(aname.strip())) # remove whitespaces first and then get the string length
+print(len(aname.rstrip()))
+print(len(aname.lstrip()))
+
+print(name.split(" "))  # converting string to the list
+
+# string formatting
+string = "I love {} and {}" # template
+print(string.format("python","ML"))
+print(string.format("c","C++"))
+print(string.format("Hyderabad","Bangalore"))
+
+# fstring 
+name = "Rita"
+age = 30
+print(f"My name is {name} and my age is {age} years")
+
+lang1 = "python"
+lang2 = "ML"
+print(f"I love {lang1} and {lang2}")
+
+
+
+
+print(name.isalpha())
+print(name.isalnum())
+print(name.isupper())
+print(name.isdigit())
+print(name.islower())
+
+# simple if
+name = "python"
+if name.islower():
+    print("String is lower")
+
+# if-else
+if name.islower():
+    print("String is lower")
+    print("inside if")
+    print("Still inside if")
+else:
+    print("String is upper")
+
+# if-elif-eif-elif-elif-else
+lang = input("Enter any language :")
+if lang == "python":
+    print("you entered python")
+elif lang == "unix":
+    print("you entered unix")
+elif lang == "java":
+    print("you entered java")
+elif lang == "genai":
+    print("you entered genai")
+else:
+    print("you entered someother language")
+
+
+
+
+
+
+##################################################################
+write a program to reverse a string without using [::-1]
+
+Enter any string:  python
+nohtyp
+
+
+text = input("Enter any string :")  #python
+revtext = ""
+
+for char in text:  #python
+    revtext = char + revtext
+print(revtext)
+
+##################################################################
+    
+write a program to convert the string to uppercase only if its length is more than 10 characters else display the same string.
+
+
+sample output:
+Enter a string: python programming
+PYTHON PROGRAMMING
+
+
+##################################################################
+
+write a program to count no. of words in a sentence.
+
+sample output:
+
+Enter a sentence: I love python programming language
+word count:  5
+
+
+##################################################################
+
+write a program to replace all the vowels in a string with *.
+
+Enter a string: python
+pyth*n
+
+
+##################################################################
+
+write a program to count how many uppercase , lowercase letters and digits are  in  a string
+
+
+Enter a string: PyTHon108
+Uppercase letters: 3
+Lowercase letters: 3
+Digits : 3
+
+
+##################################################################
+
+write a progarm to count character frequencies:
+
+
+Enter a string :  hello
+
+h : 1 time
+e : 1 time
+l : 2 times
+o : 1 time
+
+
+
+
+
+#################################list methods ####################
+
+alist = [56,34,62,61,39,9,2,4,6,72]
+
+# add single object
+alist.append(39)
+print("After appending :",alist)
+alist.append(41)
+print("After appending :", alist)
+# adding multiple values to the end of list
+alist.extend([81,29,43])
+print("After extending :",alist)
+#list.insert(index,value)
+alist.insert(0,100)
+print("After indexing :",alist )
+alist.pop(0)  #0 is the index  # list.pop(index) # will remove value at that index
+print("After pop opertaion :",alist)
+alist.pop(3)
+print("After pop opertaion :",alist)
+alist.remove(72)  # 72 is the value
+print("After removing: :",alist)
+alist.reverse()
+print("Reversing :",alist)
+alist.sort()  # ascending order
+print("After sorting :",alist)
+alist.sort(reverse=True) # descending order
+print("After sorting:",alist)
+
+
+
+alist = [56,34,62,61,39,9,2,4,6,72]
+for val in alist:
+    print(val)
+
+for i in alist:
+    print(i)
+
+
