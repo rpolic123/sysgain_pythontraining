@@ -242,3 +242,35 @@ for i in alist:
     print(i)
 
 
+
+
+
+
+
+
+
+
+
+##### dictionary
+book = {"chap1":10 , "chap2":20 ,"chap3":30}
+
+print(book)
+
+# add new keyvalue pairs
+book["chap4"] = 40    #"chap4":40 will be added to dictionary
+book["chap5"] = 50
+print(book)
+
+# display individual values
+print(book["chap1"]) # 10
+print(book["chap2"]) # 20
+
+
+# display only keys
+print(book.keys())
+
+# only values
+print(book.values())
+
+# pairs
+print(book.items())
