@@ -91,7 +91,7 @@ set ( venn diagrams in schooling days)
 -----
 set is UNORDERED collection of UNIQUE elements of same type.
 
-aset = {10,10,10,20,20,30,30,"unix","unix","java",45.43}
+aset = {10,10,10,20,20,30,30}
 
 
 
@@ -144,3 +144,41 @@ for ( i = 1 ; i<=10 ; i++)
 {
 
 }
+
+
+
+operators
+---------
+
+
+arithmetic operators :  + -  *  %  / 
+
+relational operators :    <   <=   >   >=  ==    !=
+
+assignment operators :  
+
+val = 10
+val = val + 1     (or)    val+=1     
+val = val - 1     (or)    val-=1
+
+
+logical operators:
+-----------------
+and  or  not 
+
+
+name = "python"
+if name.islower()  and len(name) == 6 :     #If both the conditions are true
+    # do something
+
+
+if name.islower()  or len(name) == 6 :     #If one of the condition is True
+    # do something
+
+
+special operators :
+------------------
+in 
+as
++
+* 

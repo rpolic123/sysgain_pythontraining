@@ -6,28 +6,18 @@ nohtyp
 '''
 
 text = input("Enter any string :")  #python
-revtext = ""
-
-for char in text:  #python
-    revtext = char + revtext
-print(revtext)
 
 
-char = p
-revtext = p 
+rev_text = ""
 
-char = y 
-revtext = y + p 
+for char in text:
+    rev_text = char + rev_text
+print("String reverse:", rev_text)
 
-char = t
-revtext = t + yp   
 
-char = h
-revtext = h + typ
-
-char = o
-revtext = o  + htyp
-
-char = n 
-revtext = n + ohtyp
+# method2
+data = list(text)  # ["p","y","t","h","o","n"]
+data.reverse()       #['n', 'o', 'h', 't', 'y', 'p']
+string = "".join(data)
+print("String reverse :",string)
 
