@@ -398,6 +398,8 @@ sentences = ["hello world", "hello python", "data world"]
 output:
 ["hello","world","python","data","world"]
 
+
+
 #################################################################
 
 
@@ -491,6 +493,9 @@ magenta #f0f
 ..
 ..
 
+
+for item in colors:
+    print(item['colors'].ljust(10) , item["values"])
 ################################################################
 
 Write a program to display all employee names and their departments.
@@ -508,6 +513,17 @@ Alice  Finance
 Bob    IT
 
 
+for key,value in employees.items():
+    print(value['name'], value['department'])
+
+
+
+
+for i in products:
+    print(i['name'], i['price'])
+    
+    
+    
 ################################################################
 
 Write a program to print all product names and prices.
@@ -517,6 +533,11 @@ products = [
     {"id": 102, "name": "Mobile", "price": 25000},
     {"id": 103, "name": "Tablet", "price": 15000}
 ]
+
+
+
+for i in products:
+    print(i['name'], i['price'])
 
 ################################################################
 
@@ -528,6 +549,11 @@ students = [
 ]
 
 
+for student in students:
+    print(student["name"])
+    print("--------------------")
+    for subjct,marks in student['marks'].items():
+        print(subjct,marks)
 
 ################################################################
 
@@ -557,20 +583,31 @@ TeamB
 Charlie
 Dave
 
+
+
+for team,values in teams.items():
+    print(team)
+    print("--------")
+    for i in values:
+        print(i['name'])
+    print()
+
+
+
 ################################################################
 Write a program to tag each VM as 'Running' or 'Stopped' based on status.
-
-infra = {
-    "vm1": {"location": "Mumbai", "status": "Running"},
-    "vm2": {"location": "Delhi", "status": "Stopped"},
-    "vm3": {"location": "Hyderabad", "status": "Running"}
-}
-
 
 output:
 vm1 - Running
 vm2 - Stopped
 
+
+
+for key,value in infra.items():
+    print(key , value['status'])
+    
+    
+    
 ################################################################
 
 Write a program to deposit 1000 into all customer accounts and display the dictionary
@@ -602,6 +639,10 @@ customers = {
     "C003": {"name": "Charlie", "balance": 3000}
 }
 
+
+for key,value in customers.items():
+    customers[key]['balance']+=1000
+print(customers)
 
 ################################################################
 
@@ -639,6 +680,16 @@ THUMBNAIL WIDTH : 32
 THUMBNAIL HEIGHT:  32
 
 
+
+for key,value in info.items():
+    if type(value) is str:
+        print(key.ljust(20),":", value)
+        print("--------")
+    if type(value) is dict:
+        for skey,svalue in value.items():
+            finalkey = key + " " + skey
+            print(finalkey,":",svalue)
+            
 
 
 ################################################################
