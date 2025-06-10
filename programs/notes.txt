@@ -182,3 +182,127 @@ in
 as
 +
 * 
+
+
+methods   : methods are object specific ( string methods , list methods , dict methods )
+functions : common everywhere.. eg. print()  range() input() .....
+
+
+
+functions
+--------
+- builtin functions
+- user defined functions 
+
+
+
+builtin functions ( . is NOT required)
+-----------------
+print()
+input()
+range()
+len()
+type()
+list()
+tuple()
+str()
+int()
+max()
+min()
+sum()
+isinstance()
+zip()
+int()
+str()
+list()
+tuple()
+dict()
+set()
+help()
+dir()
+open()
+
+
+print(dir(__builtins__))  # will display all the builtin functions and exceptions
+
+
+
+file handling
+--------------
+
+
+.csv
+xlsx
+txt
+zip
+jpg
+pbix
+json
+gif
+mpeg
+log 
+xml 
+yaml
+7z
+rar
+tar
+.gz
+tar.gz 
+pdf
+docx
+pptx
+conf
+.prop
+.properties
+.dll
+.bat
+mp3
+mp4
+jpeg
+mpeg
+dat
+
+
+flat files       : which are opened directly in any OS. ( csv json  yaml txt  dat  prop)
+third party files: we need to have third party tool to open the file ( xlsx pdf  mp4 )
+
+** all the above third party files are accessible using library.
+
+
+
+flat files  ( csv  conf log prop  dat json yaml  txt ....)
+-----------
+
+
+
+modes
+-----
+read
+write
+append
+
+opening the file
+-------------
+
+#read mode
+fobj = open("customers.txt","r")
+-->  if the file is existing only .. we will be able to read the file
+
+
+#write mode
+fobj = open("customers.txt","w")
+case1 : if file is not existing .. file will be creating first
+case2: if file is already existing... it overwrites the content
+
+
+#append mode
+fobj = open("customers.txt","a")
+case1 : if file is not existing .. file will be creating first
+case2: if file is already existing... it appends the new content
+
+
+
+closing the file 
+----------------
+fobj.close()
+

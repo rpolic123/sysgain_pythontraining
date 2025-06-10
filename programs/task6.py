@@ -15,8 +15,8 @@ o : 1 time
 
 text = input("Enter a string :")
 
-list_text = list(text)
-data= set(text)
+list_text = list(text)   #[ "h","e","l","l","o"]
+data= set(text)          # ["h","e","l","o"]
 
-for char in data:
+for char in data: #["h","e","l","o"]
     print(char.ljust(5), ":",list_text.count(char),"times")
