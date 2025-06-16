@@ -306,3 +306,146 @@ closing the file
 ----------------
 fobj.close()
 
+
+context manager
+
+file read operations
+--------------------
+
+different ways of reading the file :
+
+1. reading the file line by line using file object
+2. fobj.readlines()
+3. fobj.read()
+4. using csv library
+5. using pandas library
+
+
+
+exception handling
+-----------------
+
+Basically, there are two types of errors.
+
+1. syntax error
+2. semantic error or logical error or runtime error.
+
+Handling the errors that occurs during runtime is known exception handling
+
+try
+except
+else
+finally
+
+
+libraries 
+-----------
+
+
+
+In C
+-----
+#include<stdio.h>
+#include<conio.h>
+#include<math.h>
+#include<string.h>
+#include<time.h>
+
+
+python
+-------
+import csv 
+import sys 
+
+
+There are two types of libraries 
+
+1. builtin library
+-----------------
+builtin libraries are installed with pyhon. ( Eg.   csv , sys , os )
+
+
+2. third party library 
+--------------------
+Depending on the requirement( cloud automations, analytics , web , testing, gui ,excel automation) developer has to 
+install third party library from www.pypi.org
+
+
+
+
+How to I delete a file in python ?
+--------------------------------
+import os
+os.remove("customers.txt")
+
+
+
+How to display all the files ?
+------------------------
+os.listdir()
+
+
+How the copy files from folder1 to folder2 ?
+---------------------
+import shutil
+shutil.copy(sourcefile,destionatiopath)
+
+
+display cpu utilization, memory usage etc ?
+-------------------------------------
+import psutil
+
+
+
+
+################################### frequently used builtin libraries #############################
+
+os         : os level activities
+math       : mathematical operations
+sys        :  sys and python config data
+shutil     : copy,move, rmtree  etc
+urllib     : read the web, downloading the files
+logging    : logging all the events
+smtplib    : sending the mails
+ftplib     : performing ftp operations
+sysconfig  :  sys and python config data
+zipfile    : create/extract the zip files
+rarfile    : create/extract the rar files
+cryptopgraphy : encrypting and decrypting the data or files
+tarfile    : create/extract the tar files
+filecmp    : comparing files or directories
+sqlite3    : python default database
+csv        : reading/writing csv files
+xml        : reading/writing xml files
+calendar   : display month,year calendar info
+datetime   : working with date n time
+time       : working with date n time
+fractions  : working with decimal values
+glob       : display all the files
+heapq      : more of array operations ( getting largest among list )
+subprocess : executing system commands in python (  subprocess.getoutput("ls -ltr")
+pdb        : python debugger
+platform   : platform information
+random     : random operations ( shuffling , random digit ... )
+re         : grep + awk + sed
+socket     : networking programming
+stat       : stats of the file
+statistics : basic statistics
+pathlib	   : Object-oriented file path operations
+time	     : Delays, timestamps, performance checks
+logging	   : Logging for scripts/apps (replace print for real apps)
+argparse	 : Command-line interface (CLI) argument parsing
+configparser : 	Read/write .ini config files
+json	     :Serialize/deserialize JSON (common in APIs)
+uuid	     : Generate unique IDs (useful in files, databases)
+statistics	:Basic stats: mean, median, stdev
+random	    :Random number generation, sampling
+collections	:Specialized containers (defaultdict, Counter, namedtuple)
+traceback	   :Print/format exception tracebacks
+warnings	   :Raise and handle warnings
+
+
+
+
+
+

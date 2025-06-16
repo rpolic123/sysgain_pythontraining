@@ -11,8 +11,6 @@ teams = {
     ]
 }
 
-
-
 for team,values in teams.items():
     print(team)
     print("--------")

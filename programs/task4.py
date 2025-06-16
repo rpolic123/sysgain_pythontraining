@@ -17,7 +17,7 @@ for char in text:
         result = result + char
 print("Output:", result)
 
-
+'''
 #p
 result : p 
 
@@ -32,3 +32,4 @@ result : pyth
 
 #o
 result : pyth*
+'''
