@@ -1,5 +1,4 @@
 
-https://codeshare.io/G78001
 
 
 
@@ -795,6 +794,7 @@ Employee Relations
 
 
 ################################################################
+
 #### file handling ########
 ################################################################
 
@@ -819,4 +819,493 @@ for val in range(1,10):
     fobj.write(str(val)  + "\n")
 
 fobj.close()
+
+
+
+
+
+
+
+
+'''
+fobj = open("customers.txt","w")
+
+fobj.write("python programming\n")
+fobj.write("unix shell\n")
+fobj.writelines(["java","unix","python"])
+for val in range(1,10):
+    fobj.write(str(val) + "\n")
+
+fobj.close()
+'''
+
+# not required to close the file
+# context manager
+# If any line starts with the keyword 'with' ... it is called as context manager
+# Advantage : file is closed automatically ... NOT required to close manually.
+
+
+# pythonic way   # lastest way
+
+# If path is not defined .. file gets created in same directory
+with open("customerinfo.csv","w") as fobj:
+    fobj.write("python programming\n")
+    fobj.write("unix shell\n")
+    fobj.writelines(["java","unix","python"])
+    print(fobj.closed)
+
+#file is closed here
+print(fobj.closed)
+    
+
+
+
+with open("customerinfo.csv","w") as fobj,open("customerdata.txt","w") as fobj1:
+    fobj.write("python programming\n")
+    fobj.write("unix shell\n")
+    fobj.writelines(["java","unix","python"])
+    fobj1.write("this is file2\n")
+    print(fobj.closed)
+
+#file is closed here
+print(fobj.closed)
+    
+
+
+
+
+
+
+
+# method1
+#fobj acts like cursor or handler
+with open("customers.txt","r") as fobj:
+    for line in fobj:
+        line = line.strip()
+        print(line)
+
+
+### display the names only
+with open("customers.txt","r") as fobj:
+    for line in fobj:
+        line = line.strip()
+        output = line.split(",")
+        print(output[0])
+
+# method2
+with open("customers.txt","r") as fobj:
+    print(fobj.readlines())  # display all the lines in list
+
+
+#method3 : just like ctrl+A  ctrl+C  ctrl+V
+# not suggested for bigger files 
+with open("customers.txt","r") as fobj:
+    print(fobj.read())  # will read the whole file at once
+
+#method4
+import csv  # Advantage: Each line is automatically converting to list
+with open("customers.txt","r") as fobj:
+    reader = csv.reader(fobj)  # converting file object to csv object
+    for line in reader:
+        print(line)
+
+#method5
+import pandas
+print(pandas.read_csv("customers.txt"))
+
+
+
+pip install pandas
+
+
+
+########################## file handling ###########################
+
+
+write a program to read employee.csv and display all the lines from the file
+
+###########################################################################
+
+write a program go read employee.csv and display all the distinct workclasses.
+
+State-gov
+Self-emp-not-inc
+Private
+Federal-gov
+Local-gov
+
+
+
+
+
+'''
+write a program go read employee.csv and display all the distinct workclasses.
+
+State-gov
+Self-emp-not-inc
+Private
+Federal-gov
+Local-gov
+
+'''
+
+import csv
+workset = set()
+with open("employee.csv") as fobj:
+    header = fobj.readline()
+    reader = csv.reader(fobj)
+    # processing
+    for line in reader:
+        workclass = line[1]
+        workset.add(workclass.strip())
+    # displaying output
+    for item in workset:
+        print(item)
+
+
+import csv
+print("**** using dictionaries *****")
+workdict = dict()
+with open("employee.csv") as fobj:
+    header = fobj.readline()
+    reader = csv.reader(fobj)
+    # processing
+    for line in reader:
+        workclass = line[1]
+        workdict[workclass] = 1      #workdict = {"Never-worked":1 , "Federal-gov":1,"Private":1,"State-gov":1}
+    # displaying output
+    for item in workdict:
+        print(item)
+###########################################################################
+
+write a program go read employee.csv and display the below output
+
+Total no. of males : xxx
+Total no. of females: xx
+
+
+
+
+import csv
+workset = set()
+mcount = 0
+fcount = 0
+with open("employee.csv") as fobj:
+    header = fobj.readline()
+    reader = csv.reader(fobj)
+    for line in reader:
+        gender = line[9].strip()
+        if gender == "Male":
+            mcount+=1
+        elif gender == "Female":
+            fcount+=1
+    print("Total no. of males   :", mcount)
+    print("Total no. of females :", fcount)
+###########################################################################
+
+write a program go read employee.csv and display all the records where
+
+education is  Bachelors and Gender is Female.
+
+also display total no. records matching above conditions.
+
+
+
+
+import csv
+count = 0
+with open("employee.csv") as fobj:
+    header = fobj.readline()
+    reader = csv.reader(fobj)
+    for line in reader:
+        if line[3].strip() == "Bachelors" and line[9].strip() == "Female":
+            print(line)
+            count = count + 1
+    
+    print("No. of records matching above conditions :", count)
+
+
+###########################################################################
+
+write a program to read employee.csv and replace all the lines containing
+ United-States with USA and write the output to 12_June_2025.csv
+ 	
+
+
+with open("employee.csv") as fr,   open("usa_data.csv","w") as fw:
+    for line in fr:
+        line = line.strip()
+        line = line.replace("United-States","USA")
+        print(line)
+        fw.write(line + "\n")
+
+###########################################################################
+
+Write a Python program to read employee.csv and 
+use a dictionary to count how many employees belong to each race.
+
+{'White': 27816, 'Black': 3124, 'Asian-Pac-Islander': 1039}
+
+
+
+
+with open("employee.csv","r") as fobj:
+    reader = csv.DictReader(fobj)
+    for line in reader:
+        race = line['race'].strip()
+        if race in race_count:
+            race_count[race]+=1
+        else:
+            race_count[race] = 1
+    
+print(race_count)
+
+##########################################################################
+
+Write a Python program to read employee.csv and create a short summary sentence and display all the lines
+
+
+39-year-old Male working as Adm-clerical earns <=50K.
+
+
+
+
+import csv
+
+race_count = dict()
+
+
+with open("employee.csv","r") as fobj:
+    reader = csv.DictReader(fobj)
+    for line in reader:
+        age = line['age'].strip()
+        gender = line['gender'].strip()
+        occupation = line['occupation'].strip()
+        score = line['income']
+
+        print("{}-year-old {} working as {}earns {}".format(age,gender,occupation,score))
+
+
+
+
+import csv
+
+race_count = dict()
+
+
+with open("employee.csv","r") as fobj:
+    reader = csv.DictReader(fobj)
+    for line in reader:
+        age = line['age'].strip()
+        gender = line['gender'].strip()
+        occupation = line['occupation'].strip()
+        score = line['income']
+
+        print("{}-year-old {} working as {}earns {}".format(age,gender,occupation,score))
+
+
+
+##########################################################################
+
+Write a program to categorize employees into age groups and list their education:
+
+<20: Teen
+
+20–35: Young Adult
+
+36–60: Adult
+
+>60: Senior
+
+output:
+{"Teen": 45 , "Young Adult": 56 , "Adult" : 56 ,  "Senior":76  }
+
+##########################################################################
+
+Write a program to find the workclass string with the maximum number of characters.
+
+Self-emp-not-inc
+##########################################################################
+
+
+
+
+
+import sys
+try:
+    #fobj acts like cursor or handler
+    with open("customers1111.txt","r") as fobj:
+        for line in fobj:
+            line = line.strip()
+            print(line)
+except TypeError as err:
+    print(err)
+    print(sys.exc_info())
+except ValueError as err:
+    print(err)
+    print(sys.exc_info())
+except (KeyError,IndexError) as err:
+    print("Invalid index or key")
+    print(err)
+    print(sys.exc_info())
+except FileNotFoundError as err:
+    print("File is not found")
+    print(err)
+    print(sys.exc_info())
+except Exception as err:  # default exception
+    print(err)
+    print(sys.exc_info())
+print("regular program")
+
+
+
+
+
+
+
+import sys
+try:
+    #fobj acts like cursor or handler
+    fobj =  open("customers.txt","r")
+
+except Exception as err:  # default exception
+    print(err)
+    print(sys.exc_info())
+else:
+    for line in fobj:
+        line = line.strip()
+        print(line)
+finally:
+    print("end of file reading")
+
+
+
+
+
+
+################################### frequently used builtin libraries #############################
+
+os         : os level activities
+math       : mathematical operations
+sys        :  sys and python config data
+shutil     : copy,move, rmtree  etc
+urllib     : read the web, downloading the files
+logging    : logging all the events
+smtplib    : sending the mails
+ftplib     : performing ftp operations
+sysconfig  :  sys and python config data
+zipfile    : create/extract the zip files
+rarfile    : create/extract the rar files
+cryptopgraphy : encrypting and decrypting the data or files
+tarfile    : create/extract the tar files
+filecmp    : comparing files or directories
+sqlite3    : python default database
+csv        : reading/writing csv files
+xml        : reading/writing xml files
+calendar   : display month,year calendar info
+datetime   : working with date n time
+time       : working with date n time
+fractions  : working with decimal values
+glob       : display all the files
+heapq      : more of array operations ( getting largest among list )
+subprocess : executing system commands in python (  subprocess.getoutput("ls -ltr")
+pdb        : python debugger
+platform   : platform information
+random     : random operations ( shuffling , random digit ... )
+re         : grep + awk + sed
+socket     : networking programming
+stat       : stats of the file
+statistics : basic statistics
+pathlib	   : Object-oriented file path operations
+time	     : Delays, timestamps, performance checks
+logging	   : Logging for scripts/apps (replace print for real apps)
+argparse	 : Command-line interface (CLI) argument parsing
+configparser : 	Read/write .ini config files
+json	     :Serialize/deserialize JSON (common in APIs)
+uuid	     : Generate unique IDs (useful in files, databases)
+statistics	:Basic stats: mean, median, stdev
+random	    :Random number generation, sampling
+collections	:Specialized containers (defaultdict, Counter, namedtuple)
+traceback	   :Print/format exception tracebacks
+warnings	   :Raise and handle warnings
+
+
+
+
+
+######################################################################################
+write a program to display all the files and directories from current directory line by line
+
+######################################################################################
+
+
+write a progarm to display all the files and directories from C:
+
+######################################################################################
+
+#write a progarm to display all the files and directories from C:
+
+######################################################################################
+
+write a program to delete all the .xlsx files from current directory
+
+
+######################################################################################
+
+
+write a program to display all the files that are ending with .csv files from current directory
+
+
+######################################################################################
+
+write a script to create 10 directories in the current directory as below.
+
+dir1
+dir2
+dir3
+dir4
+..
+..
+dir10
+
+
+
+####################################################################################
+
+
+
+write a script to perform the below operations :
+
+1. display current working directory
+2. display login name
+3. display all environment variables
+4. display today's date ( timestamp )
+5. display May months calendar
+6. display all .py files and its size in bytes
+7. display the modified time of employees.csv file
+8. display current process id
+
+####################################################################################
+
+
+
+write a script to display the below information 
+
+1. CPU percentage
+2. Memory info ( total memory, available, used)
+3. process info
+4. disk partitions
+5. network statistics
+4. platform details ( like OS name , model , python version)
+5. boot time of your system
+6. IP Address of your system
+7. hostname of the system
+
+
+####################################################################################
+
+
+
+
+
 
