@@ -1236,6 +1236,15 @@ warnings	   :Raise and handle warnings
 ######################################################################################
 write a program to display all the files and directories from current directory line by line
 
+
+import os
+try:
+    files = os.listdir()
+    for file in files:
+        print(file)
+except Exception as err:
+    print(err)
+
 ######################################################################################
 
 
@@ -1250,6 +1259,48 @@ write a progarm to display all the files and directories from C:
 write a program to delete all the .xlsx files from current directory
 
 
+
+
+
+'''
+write a program to delete all the .xlsx files from current directory
+
+
+'''
+
+import os
+try:
+    files = os.listdir()
+
+    for file in files:
+        if file.endswith("xlsx"):
+            os.remove(file)
+            print(file, "is removed")
+except Exception as err:
+    print(err)
+
+import os
+try:
+    files = os.listdir()
+
+    for file in files:
+        if ".xlsx" in file:  
+            os.remove(file)
+            print(file, "is removed")
+except Exception as err:
+    print(err)
+
+import os
+import re
+try:
+    files = os.listdir()
+
+    for file in files:
+        if re.search("xlsx",file,re.I): 
+                os.remove(file)
+                print(file, "is removed")
+except Exception as err:
+    print(err)
 ######################################################################################
 
 
@@ -1285,6 +1336,34 @@ write a script to perform the below operations :
 7. display the modified time of employees.csv file
 8. display current process id
 
+
+
+import os
+import datetime
+import calendar
+try:
+    pwd = os.getcwd()
+    print("Current working directory :", pwd)
+    print("loginame :", os.getlogin())
+    print("display all enviornment variables:")
+    for key,value in os.environ.items():
+        print(key)
+        print(value)
+        print("------")
+    print(datetime.datetime.now())
+    print(calendar.month(2025,5))
+    print(calendar.calendar(2025))
+
+
+    for file in os.listdir():
+        if file.endswith(".py"):
+            print(file.ljust(20), os.path.getsize(file),"bytes")
+
+    print(os.getpid())
+except Exception as err:
+    print(err)
+
+
 ####################################################################################
 
 
@@ -1302,9 +1381,390 @@ write a script to display the below information
 7. hostname of the system
 
 
+
+
+
+'''
+
+write a script to display the below information 
+
+1. CPU percentage
+2. Memory info ( total memory, available, used)
+3. process info
+4. disk partitions
+5. network statistics
+4. platform details ( like OS name , model , python version)
+5. boot time of your system
+6. IP Address of your system
+7. hostname of the system
+
+'''
+
+
+import psutil
+import platform
+import socket
+import datetime
+print(psutil.cpu_percent(interval=1))
+print(psutil.virtual_memory())
+print(psutil.disk_partitions())
+#print(psutil.net_connections())
+print(platform.platform())
+print(platform.python_version())
+print(psutil.boot_time())  # will return epoch time in seconds
+print(datetime.datetime.fromtimestamp(psutil.boot_time()).strftime("%Y-%m-%d %H:%M:%S"))
+
+hostname = socket.gethostname()  
+ip_address = socket.gethostbyname(hostname)  
+host_info = socket.gethostbyaddr(ip_address)  
+
+print("Hostname:", hostname)
+print("IP Address:", ip_address)
+
 ####################################################################################
 
 
+
+https://dev.mysql.com/get/Downloads/MySQLInstaller/mysql-installer-community-8.0.42.0.msi
+
+
+
+
+open mysql command line client
+-------------------------------
+
+
+step1: create database
+----------------
+create database empdb;
+
+
+step2:  access your database
+----------------------------
+use empdb;
+
+step3 : create table 
+--------------------
+create table employee ( workclass varchar(100) , education varchar(100)) ;
+
+step4: insert few records 
+------------------------
+insert into employee values('private' , 'graduation');
+insert into employee values('public' , 'btech');
+
+step5:
+------
+commit;
+
+
+
+
+
+###task1
+write a program to read employee.csv and insert workclass,education columns data to the database
+
+How to check the output?
+
+import os
+import pymysql
+import csv
+import sys
+try:
+    #step1
+    conn = pymysql.connect(host="localhost",port=3306,user="root",password="yourpassword")
+    print(conn)   ##  0x3kdky
+    if conn:
+        cursor = conn.cursor() 
+        #step2:
+        filename = "employee1111.csv"
+        if os.path.exists(filename) and os.path.isfile(filename):
+            with open(filename,"r") as fobj:
+                reader = csv.reader(fobj)
+                count = 0
+                for line in reader:
+                    workclass = line[1]
+                    education = line[3]
+                    query = "insert into empdb.employee values('{}','{}')".format(workclass,education)
+                    #step3
+                    cursor.execute(query)
+                    #step4
+                    count = count + 1
+                    #step5
+                print(count ,  "records inserted")
+                conn.commit()   
+                conn.close()
+        else:
+            print("file not found..")
+except Exception as err:
+    print(err)
+    print(sys.exc_info())
+
+##################################################################
+
+
+
+###task2
+create a table in mysql considering all the columns from employee.csv
+
+write a program to insert all the rows from employee.csv to the database
+
+
+
+
+
+
+
+CREATE TABLE employee_data ( age VARCHAR(10), workclass VARCHAR(50), fnlwgt VARCHAR(20), education VARCHAR(50), educational_num VARCHAR(10), marital_status VARCHAR(50),occupation VARCHAR(50),relationship VARCHAR(50),race VARCHAR(30),gender VARCHAR(10),capital_gain VARCHAR(10),capital_loss VARCHAR(10), hours_per_week VARCHAR(10),native_country VARCHAR(50), income VARCHAR(10) );
+
+
+
+
+
+
+import os
+import pymysql
+import csv
+import sys
+try:
+    #step1
+    conn = pymysql.connect(host="localhost",port=3306,user="root",password="yourpassword")
+    print(conn)   ##  0x3kdky
+    if conn:
+        cursor = conn.cursor() 
+        #step2:
+        filename = "employee.csv"
+        if os.path.exists(filename) and os.path.isfile(filename):
+            with open(filename,"r") as fobj:
+                
+
+                reader = csv.reader(fobj)
+                count = 0
+                for line in reader:
+
+                    query = "insert into empdb.employee_data values('{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}')".format(*line)
+                    #step3
+                    cursor.execute(query)
+                    #step4
+                    count = count + 1
+                    #step5
+                print(count ,  "records inserted")
+                conn.commit()   
+                conn.close()
+        else:
+            print("file not found..")
+except Exception as err:
+    print(err)
+    print(sys.exc_info())
+
+
+
+CREATE TABLE employee_data ( age VARCHAR(100), workclass VARCHAR(100), fnlwgt VARCHAR(100), education VARCHAR(100), educational_num VARCHAR(100), marital_status VARCHAR(100),occupation VARCHAR(100),relationship VARCHAR(100),race VARCHAR(100),gender VARCHAR(100),capital_gain VARCHAR(100),capital_loss VARCHAR(100), hours_per_week VARCHAR(100),native_country VARCHAR(100), income VARCHAR(100) );
+
+
+CREATE TABLE employee_data ( age VARCHAR(100), workclass VARCHAR(100), fnlwgt VARCHAR(100), education VARCHAR(100)
+, educational_num VARCHAR(100), marital_status VARCHAR(100),occupation VARCHAR(100),relationship VARCHAR(100)
+,race VARCHAR(100),gender VARCHAR(100),capital_gain VARCHAR(100),capital_loss VARCHAR(100), hours_per_week VARCHAR(100)
+,native_country VARCHAR(500), income VARCHAR(100) );
+
+
+csv file -----> database
+
+
+#######################################    database ------> excel file
+
+write a program to insert all the records from database to excel file
+
+openpyxl : reading and writing excel file
+
+#######################################
+
+
+
+
+
+
+# fixed arguments
+def display(a,b):
+    c = a + b
+    return c
+
+total = display(10,20)
+print(total)
+
+### default arguments
+def display(a = 0,b = 0,c = 0,d = 0):
+    print(a,b,c,d)
+
+display()
+display(10)
+display(10,20)
+display(10,20,30)
+display(10,20,30,40)
+
+
+# variable length arguments
+def display(*args):
+    for val in args:
+        print(val)
+
+display(10,20,30,40,5,56,4343,43)
+
+
+def displayinfo(**kwargs):   #**kwargs is the dicttionary
+    print(kwargs)
+    for key,value in kwargs.items():
+        print(key,value)
+
+
+displayinfo(chap1 = 10 , chap2 = 20)
+
+
+
+########################################### lambda function ################
+
+
+#lambda function
+# lambda is the replacement of single liner function only
+# it is faster in terms of execution
+# pythonic way
+#functioname = lambda variables : expression
+
+display = lambda a,b : a + b
+
+print(display(10,20))
+
+
+# 1. Add two numbers
+add = lambda a, b: a + b
+print(add(3, 5))  # 8
+
+# 2. Square of a number
+square = lambda x: x ** 2
+print(square(4))  # 16
+
+# 3. Length of a string
+length = lambda s: len(s)
+print(length("python"))  # 6
+
+
+# 4. Multiply three numbers
+mul = lambda a, b, c: a * b * c
+print(mul(2, 3, 4))  # 24
+
+
+# 5. Convert to uppercase
+upper = lambda s: s.upper()
+print(upper("hello"))  # HELLO
+
+
+# 6. Reverse string
+reverse = lambda s: s[::-1]
+print(reverse("lambda"))  # adbmal
+
+
+
+
+
+
+# 1. Max of two numbers
+maximum = lambda a, b: a if a > b else b
+print(maximum(10, 20))  # 20
+
+
+
+
+# 2. Pass or Fail
+result = lambda marks: "Pass" if marks >= 35 else "Fail"
+print(result(30))  # Fail
+
+
+
+
+# 3. Even or Odd
+even_odd = lambda x: "Even" if x % 2 == 0 else "Odd"
+print(even_odd(9))  # Odd
+
+
+
+# 4. Positive, Negative or Zero
+sign = lambda x: "Positive" if x > 0 else "Negative" if x < 0 else "Zero"
+print(sign(-5))  # Negative
+
+
+
+
+# 5. Grade categorization
+grade = lambda m: 'A' if m >= 90 else 'B' if m >= 75 else 'C'
+print(grade(80))  # B
+
+
+# 6. Adult or Minor
+age_check = lambda age: "Adult" if age >= 18 else "Minor"
+print(age_check(17))  # Minor
+
+# 7. Number is multiple of 3
+multiple_of_3 = lambda x: "Yes" if x % 3 == 0 else "No"
+print(multiple_of_3(9))  # Yes
+
+# 8. Leap year check
+leap_year = lambda y: "Leap" if (y % 4 == 0 and y % 100 != 0) or (y % 400 == 0) else "Not Leap"
+print(leap_year(2020))  # Leap
+
+# 9. Compare lengths
+compare_len = lambda a, b: "Equal" if len(a) == len(b) else "Not Equal"
+print(compare_len("hi", "by"))  # Equal
+
+# 10. Password strength
+password_check = lambda pwd: "Strong" if len(pwd) >= 8 else "Weak"
+print(password_check("pass123"))  # Weak
+
+
+
+
+
+
+######## lambda and map()
+
+
+alist = [10,20,30,40,50]
+
+# map(function,iterable)
+increment = lambda x : x + 5
+print(list(map(increment, alist)))
+
+
+print(dir(__builtins__))
+
+
+#Convert to strings
+nums = [1, 2, 3, 4, 5]
+to_str = list(map(lambda x: str(x), nums))
+print(to_str)  # ['1', '2', '3', '4', '5']
+
+
+#Convert floats to ints
+floats = [2.5, 3.6, 4.1]
+ints = list(map(lambda x: int(x), floats))
+print(ints)  # [2, 3, 4]
+
+
+
+#Uppercase names
+names = ["alice", "bob", "carol"]
+upper_names = list(map(lambda x: x.upper(), names))
+print(upper_names)  # ['ALICE', 'BOB', 'CAROL']
+
+
+
+#Extract domain from email
+emails = ["user1@gmail.com", "user2@yahoo.com"]
+domains = list(map(lambda x: x.split("@")[1], emails))
+print(domains)
+
+
+names = ["Alice", "Bob"]
+greeted = list(map(lambda x: "Mr./Ms. " + x, names))
+print(greeted)
 
 
 
