@@ -1769,3 +1769,951 @@ print(greeted)
 
 
 
+
+
+
+
+
+
+
+
+
+
+import re
+
+line  = "The rain in Spain"
+x = re.findall("ai", line)
+print(x)
+
+
+line = "The rain in Spain"
+x = re.findall("Portugal", line)
+print(x)
+
+
+line = "The rain in Spain"
+x = re.search("\s", line)
+print("The first white-space character is located in position:", x.start())
+
+
+line = "The rain in Spain"
+x = re.search("Portugal", line)
+print(x)
+
+
+
+line = "The rain in Spain"
+x = re.sub("\s", "9", line)
+print(x)
+
+
+import re
+string = 'hello 12 hi 89. Howdy 34'
+pattern = '\d+'
+result = re.findall(pattern, string)
+print(result)
+
+
+import re
+string = 'Twelve:12 Eighty nine:89.'
+pattern = '\d+'
+result = re.split(pattern, string)
+print(result)
+
+
+
+
+
+import re
+# multiline string
+string = 'abc    12de 23 \n f45 6'
+# matches all whitespace characters
+pattern = '\s+'
+# empty string
+replace = ' '
+new_string = re.sub(pattern, replace, string)
+print(new_string)
+
+
+
+import re
+string = '39801 356, 2102 1111'
+# Three digit number followed by space followed by two digit number
+pattern = '(\d{3}) (\d{2})'
+# match variable contains a Match object.
+match = re.search(pattern, string)
+if match:
+  print(match.group())
+else:
+  print("pattern not found")
+# Output: 801 35
+
+
+
+
+
+import re
+
+regex = '^[\w]+@[\w]+'
+
+email = "giridhar276@gmail.c33om"
+
+if re.search(regex,email):
+    print("valid email")
+else:
+    print("Invalid email")
+
+
+
+
+
+import re
+regex = '^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$'
+email = "giridhar276@gmail.com"
+
+if re.search(regex,email):
+    print("valid email")
+else:
+    print("Invalid email")
+
+
+
+
+
+
+###### web scrapping #######
+#step1
+import requests 
+from bs4 import BeautifulSoup
+url = "https://www.google.com/"
+response = requests.get(url)
+if response.status_code == 200 :
+    content = response.text
+    #print(content)
+    #step2 : read the content from html using beautifulsoup library
+    soup = BeautifulSoup(content, 'html.parser')
+
+    for link in soup.find_all('a'):
+        print(link.get('href'))
+        print("-----------")
+
+
+
+
+
+####################################
+
+write a program to read https://www.wikipedia.org/  website and display all the URLs from this portal 
+that starts with https only and write all the urls to the excel file(25_Jun_2025.xlsx ) with todays timestamp.
+
+use try -expect blocks
+validations
+
+
+
+
+
+
+
+####################################
+#. list comprehension
+##################################
+
+
+
+# method1
+for val in range(1,10):
+    print(val)
+
+
+# method2 - using list comprehension
+# [expression forloop]
+output = [  val+5  for val in range(1,10)]
+print(output)
+
+
+
+squares = [x**2 for x in range(10)]
+print(squares)
+
+
+
+for val in range(1,10):
+    if val % 2 == 0:
+        print(val)
+
+
+evens = [x for x in range(2,20) if x % 2 == 0]
+print(evens)
+
+
+words = ['Python', 'is', 'awesome', 'AI', 'GPT']
+short_words = [word for word in words if len(word) <= 3]
+print(short_words)
+
+
+
+names = ['alice', 'bob', 'charlie']
+upper_names = [name.upper() for name in names]
+
+
+
+
+
+
+
+
+
+import requests
+import json
+def get_all_products():
+    url= "https://fakestoreapi.com/"
+    endpoint = "products"
+    response = requests.get(url + endpoint))
+    print("GET All Products:")
+    data = response.json()
+    for item in data:
+        print("ID         :",item['id'])
+        print("Item       :",item['title'])
+        print("Description:",item['description'])
+        print("price      :",item['price'])
+        print("-------")
+
+
+get_all_products()
+
+
+
+########## post method 
+
+import requests
+# POST Create a Product
+def create_product():
+    payload = {
+        "title": "test product",
+        "price": 13.5,
+        "description": "lorem ipsum set",
+        "image": "https://i.pravatar.cc",
+        "category": "electronic"
+    }
+    response = requests.post("https://fakestoreapi.com/products", json=payload)
+    print("POST Create a Product:")
+    print(response.json())
+
+
+
+create_product()
+
+
+############################################################
+
+
+import requests
+import os
+
+token = "fdsfasfafdxzfdasasfasfddafs" # Set your GitHub token in environment variable
+headers = {
+    "Authorization": f"token {token}",
+    "Accept": "application/vnd.github.v3+json"
+}
+
+data = {
+    "name": "my-new-repo",
+    "description": "Created via REST API",
+    "private": False
+}
+
+response = requests.post("https://api.github.com/user/repos", headers=headers, json=data)
+print(response.json())
+
+response = requests.post("https://api.github.com/user/repos",  json=data,auth=('giridhar276','yourtoken'))
+print(response.json())
+
+############################################################
+
+########### requests.put() ##########################
+
+
+import requests
+def update_product(product_id):
+    data = {
+        "title": "updated product",
+        "price": 15.0,
+        "description": "updated description",
+        "image": "https://i.pravatar.cc",
+        "category": "electronic"
+    }
+    response = requests.put(f"https://fakestoreapi.com/products/{product_id}", json=data)
+    print("PUT Update a Product:")
+    print(response.json())
+
+
+
+
+update_product(10)
+
+
+############################
+
+
+import requests
+# DELETE a Product
+def delete_product(product_id):
+    response = requests.delete(f"https://fakestoreapi.com/products/{product_id}")
+    print("DELETE a Product:")
+    print(response.status_code)
+
+
+delete_product(1)
+
+
+###########################
+
+
+
+
+##################################################
+#################### display all repos ############
+import requests
+username = "octocat"
+url = f"https://api.github.com/users/{username}/repos"
+
+response = requests.get(url)
+repos = response.json()
+for repo in repos:
+    print(f"{repo['name']} - {repo['html_url']}")
+
+
+##################################################
+#################### create new repo ###############
+##################################################
+
+import requests
+import os
+
+token = "your token" # Set your GitHub token in environment variable
+headers = {
+    "Authorization": f"token {token}",
+    "Accept": "application/vnd.github.v3+json"
+}
+
+data = {
+    "name": "my-new-repo",
+    "description": "Created via REST API",
+    "private": False
+}
+
+response = requests.post("https://api.github.com/user/repos", headers=headers, json=data)
+print(response.json())
+
+##################################################
+##################### requests.delete() ################
+##################################################
+import requests
+owner = "your-username"
+repo = "repo-to-delete"
+token = ""
+url = f"https://api.github.com/repos/{owner}/{repo}"
+headers = {
+    "Authorization": f"token {token}",
+    "Accept": "application/vnd.github.v3+json"
+}
+
+response = requests.delete(url, headers=headers)
+print("Deleted!" if response.status_code == 204 else response.text)
+
+
+########################################
+
+
+
+
+import requests
+
+# E-commerce API: Fake Store API
+# Base URL: https://fakestoreapi.com
+
+# GET All Products
+def get_all_products():
+    response = requests.get("https://fakestoreapi.com/products")
+    print("GET All Products:")
+    print(response.json())
+
+# POST Create a Product
+def create_product():
+    data = {
+        "title": "test product",
+        "price": 13.5,
+        "description": "lorem ipsum set",
+        "image": "https://i.pravatar.cc",
+        "category": "electronic"
+    }
+    response = requests.post("https://fakestoreapi.com/products", json=data)
+    print("POST Create a Product:")
+    print(response.json())
+
+# PUT Update a Product
+def update_product(product_id):
+    data = {
+        "title": "updated product",
+        "price": 15.0,
+        "description": "updated description",
+        "image": "https://i.pravatar.cc",
+        "category": "electronic"
+    }
+    response = requests.put(f"https://fakestoreapi.com/products/{product_id}", json=data)
+    print("PUT Update a Product:")
+    print(response.json())
+
+# DELETE a Product
+def delete_product(product_id):
+    response = requests.delete(f"https://fakestoreapi.com/products/{product_id}")
+    print("DELETE a Product:")
+    print(response.status_code)
+
+if __name__ == "__main__":
+    get_all_products()
+    create_product()
+    update_product(100)  # Replace with a valid product ID
+    get_all_products()
+    delete_product(1)  # Replace with a valid product ID
+
+
+#################################################
+
+
+
+# procedural
+print("hello")
+
+
+# object oriented
+
+class Display:
+    def displayOutput(self):
+        print("hello")
+
+d1 = Display()
+d1.displayOutput()
+
+####################
+
+#class - create our own implementation
+class Employee:
+    def displayName(self):
+        print("Emp name :","rita")
+    def displayAddress(self):
+        print("Address:", "mumbai")
+
+# object creation
+emp1 = Employee()
+emp1.displayName()
+emp1.displayAddress()
+
+
+################################
+
+
+#class - create our own implementation
+
+class Employee:
+    #constructor - this method is invoked automatically when object is created
+    def __init__(self,name):
+        self.name = name
+    def displayName(self):
+        print("Emp name :",self.name)
+
+# object creation
+emp1 = Employee('Ram')
+emp1.displayName()
+
+emp2 = Employee('Rao')
+emp2.displayName()
+
+emp3 = Employee('Gita')
+emp3.displayName()
+
+
+####################
+
+
+
+class Product:
+    def __init__(self, price, item_name, weight, brand, status='For Sale'):
+        self.price = price
+        self.item_name = item_name
+        self.weight = weight
+        self.brand = brand
+        self.status = status
+
+    def sell(self):
+        self.status = 'sold'
+        return self
+
+    def add_tax(self, tax):
+        return "Price after sales tax: ${}".format(self.price * (1 + (tax/100.0)))
+
+    def return_item(self, reason_for_return):
+        if reason_for_return.lower() == 'defective':
+            self.status = 'Defective'
+            self.price = 0
+        elif reason_for_return.lower() == 'like new':
+            self.status = 'For Sale'
+        elif reason_for_return.lower() == 'open box':
+            self.status = 'Used'
+            self.price = 0.8 * self.price # 20% discount
+        return self
+
+    def display_all(self):
+        print("Price: ${}".format(self.price))
+        print("Item Name:", self.item_name)
+        print("Weight: {}g".format(self.weight))
+        print("Brand:", self.brand)
+        print("Status:", self.status)
+        return self
+
+chocolate = Product(5, 'chocolate', 100, 'Dairy Milk')
+
+print("Initial Specs: ")
+chocolate.display_all()
+
+print ("Specs after adding tax: ")
+print(chocolate.add_tax(15))
+
+print("Specs after selling: ")
+chocolate.sell().display_all()
+
+print("Specs after returning: ")
+chocolate.return_item('defective').display_all()
+
+###################################
+
+
+class Call:
+    def __init__(self, id, name, phone_number, time_of_call, reason_for_call):
+        self.id = id
+        self.name = name
+        self.phone_number = phone_number
+        self.time_of_call = time_of_call
+        self.reason_for_call = reason_for_call
+
+    def display(self):
+        print("ID:", self.id)
+        print("Name:", self.name)
+        print("Phone Number:", self.phone_number)
+        print("Time of call (in HHMM format):", self.time_of_call)
+        print("Reason for call:", self.reason_for_call)
+
+class CallCenter:
+    def __init__(self):
+        self.calls = []
+        self.queue_size = 0
+    def add(self, call):
+        call_list = []
+        call_list.append(call.id)
+        call_list.append(call.name)
+        call_list.append(call.phone_number)
+        call_list.append(call.time_of_call)
+        call_list.append(call.reason_for_call)
+        self.calls.append(call_list)
+        self.queue_size += 1
+        return self
+    def remove(self):
+        self.calls.pop(0)
+        self.queue_size -= 1
+        return self
+    def info(self):
+        print('Length of queue:', self.queue_size)
+        for value in self.calls:
+            print("Name:", value[1])
+            print("Phone Number:", value[2])
+call1 = Call(1, 'Ash', 123, 1234, 'thanks')
+call1.display()
+call_center = CallCenter()
+call_center.add(call1)
+call_center.info()
+# print call_center.calls
+
+####################################################
+
+
+
+
+
+
+
+
+import requests
+from bs4 import BeautifulSoup
+
+class WebScraper:
+    def __init__(self, url):
+        self.url = url
+        self.page_content = None
+
+    def fetch_content(self):
+        """Fetch the HTML content of the URL"""
+        try:
+            response = requests.get(self.url)
+            if response.status_code == 200:
+                self.page_content = response.text
+                print(f"Successfully fetched content from: {self.url}")
+            else:
+                print(f"Failed to fetch page. Status Code: {response.status_code} - {self.url}")
+        except Exception as e:
+            print(f"Error fetching the page: {e} - {self.url}")
+
+    def show_title(self):
+        """Parse the HTML and print the title of the page"""
+        if self.page_content:
+            soup = BeautifulSoup(self.page_content, 'html.parser')
+            title = soup.title.string if soup.title else "No title found"
+            print(f"Page Title: {title}")
+        else:
+            print("No page content available. Please fetch content first.")
+
+    def show_links(self):
+        """Extract and print all hyperlinks from the page"""
+        if self.page_content:
+            soup = BeautifulSoup(self.page_content, 'html.parser')
+            links = soup.find_all('a', href=True)
+            for link in links:
+                print(link['href'])
+            else:
+                print("No links found on the page.")
+        else:
+            print("No page content available. Please fetch content first.")
+
+
+
+urls = [
+        "https://www.wikipedia.org",
+        "https://www.python.org"
+    ]
+
+for url in urls:
+    print(f"\n📄 Scraping URL: {url}")
+    scraper = WebScraper(url)
+    scraper.fetch_content()
+    scraper.show_title()
+    scraper.show_links()
+    
+    
+
+########################################
+
+
+
+
+
+
+import os
+import sys
+import shutil
+
+# Define a class
+class FileManager:
+    def __init__(self, source_path, destination_path):
+        self.source_path = source_path  # instance variable
+        self.destination_path = destination_path  # instance variable
+
+    def display_paths(self):
+        """Display source and destination paths"""
+        print(f"Source Path: {self.source_path}")
+        print(f"Destination Path: {self.destination_path}")
+
+    def copy_file(self):
+        """Copy file from source to destination"""
+        try:
+            shutil.copy(self.source_path, self.destination_path)
+            print(f"File copied successfully from {self.source_path} to {self.destination_path}")
+        except FileNotFoundError:
+            print(f"Error: Source file not found - {self.source_path}")
+        except Exception as e:
+            print(f"An unexpected error occurred: {e}")
+
+
+# Example usage
+if __name__ == "__main__":
+    # Create objects (instances)
+    file1 = FileManager("sample.txt", "source")
+    #file2 = FileManager("sample.txt", "destination")
+
+    # Access methods
+    file1.display_paths()
+    file1.copy_file()
+
+    print()
+
+    ##file2.display_paths()
+    ##file2.copy_file()
+    
+    
+    
+###################################################
+
+class Patient:
+    def __init__(self, id, name, allergies, bed_number=None):
+        self.id = id
+        self.name = name
+        self.allergies = allergies
+        self.bed_number = bed_number
+class Hospital:
+    def __init__(self, name, capacity):
+        self.name = name
+        self.patients = []
+        self.capacity = capacity
+    def add(self, patient):
+        if len(self.patients) >= self.capacity:
+            print('Sorry! The Hospital is full!')
+        else:
+            patient_dictionary = {
+            'ID': patient.id,
+            'Name': patient.name,
+            'Allergies': patient.allergies,
+            'Bed Number': patient.bed_number
+            }
+            self.patients.append(patient_dictionary)
+            print ('{} has been admitted.'.format(patient.name))
+    def discharge(self, name):
+        for value in self.patients:
+            if value['Name'] == name:
+                value['Bed Number'] = None
+                self.patients.remove(value)
+patient1 = Patient(1, 'Ash', 'Wool', 1)
+patient2 = Patient(1, 'Sterling', 'Chocolate', 3)
+patient3 = Patient(1, 'Alish', 'Puppies', 7)
+patient4 = Patient(1, 'Andre', 'Kitties', 9)
+hospital = Hospital('kings Hospital', 3)
+hospital.add(patient1)
+hospital.add(patient2)
+hospital.add(patient3)
+hospital.add(patient4)
+hospital.discharge('Alish')
+hospital.discharge('Sterling')
+hospital.add(patient4)
+
+
+
+################
+
+#### access specifiers
+
+class BankAccount:
+    def __init__(self, owner, balance):
+        self.owner = owner         # public
+        self._balance = balance    # protected
+        self.__pin = 1234          # private
+
+    def display(self):
+        print(f"Owner: {self.owner}")
+        print(f"Balance: {self._balance}")
+        print(f"PIN: {self.__pin}")  # Accessible within class
+
+account = BankAccount("Alice", 1000)
+account.display()
+
+print(account.owner)       # Public - accessible
+print(account._balance)    # Protected - accessible but not recommended
+print(account.__pin)     # Error: Private attribute not directly accessible
+
+
+###########
+
+
+# Parent class
+class Vehicle:
+    def start_engine(self):
+        print("Engine started.")
+
+# Child class inheriting from Vehicle
+class Car(Vehicle):
+    def drive(self):
+        print("Car is being driven.")
+
+# Create object of child class
+my_car = Car()
+
+# Call methods from both parent and child
+my_car.start_engine()  # Inherited from Vehicle
+my_car.drive()         # Defined in Car
+
+
+
+
+#######################################
+
+
+from flask import Flask
+
+app = Flask(__name__)
+@app.route("/")
+def hello_world():
+    return "<p>Hello, World!</p>"
+
+
+app.run()
+
+
+
+
+#######################################
+
+
+
+from flask import Flask
+
+app = Flask(__name__)
+@app.route("/")
+def hello_world():
+    return "<p>this is main page</p>"
+
+@app.route("/about")
+def about():
+    return "<p>this is about page</p>"
+
+
+@app.route("/careers")
+def carrers():
+    return "<p>careers page</p>"
+
+
+
+app.run()
+
+
+
+#######################################
+
+
+
+
+#######################################
+
+
+
+
+from flask import Flask, render_template, flash, request
+from wtforms import Form, StringField, TextAreaField, validators, SubmitField
+from wtforms.validators import DataRequired, Length
+
+# App config
+DEBUG = True
+app = Flask(__name__)
+app.config.from_object(__name__)
+app.config['SECRET_KEY'] = '11117d441f27d441f27567d441f2b6176a'
+
+# WTForms class
+class ReusableForm(Form):
+    name = StringField('Name:', validators=[DataRequired()])
+    email = StringField('Email:', validators=[DataRequired(), Length(min=6, max=35)])
+    password = StringField('Password:', validators=[DataRequired(), Length(min=3, max=35)])
+
+@app.route("/", methods=['GET', 'POST'])
+def hello():
+    form = ReusableForm(request.form)
+
+    print(form.errors)
+    if request.method == 'POST' and form.validate():
+        name = form.name.data
+        email = form.email.data
+        password = form.password.data
+
+        print(name, " ", email, " ", password)
+        flash(f'Thanks for registration {name}')
+    elif request.method == 'POST':
+        flash('Error: All the form fields are required.')
+
+    return render_template('hello.html', form=form)
+
+if __name__ == "__main__":
+    app.run(debug=True)
+
+
+
+
+
+user1,Admin@123,https://650782130948.signin.aws.amazon.com/console     Giri
+
+
+user2,Admin@123,https://650782130948.signin.aws.amazon.com/console     Udheshna
+
+
+user3,Admin@123,https://650782130948.signin.aws.amazon.com/console   Jyothi
+
+
+user4,Admin@123,https://650782130948.signin.aws.amazon.com/console   Swathy
+
+user5,Admin@123,https://650782130948.signin.aws.amazon.com/console    Sridevi
+
+user6,Admin@123,https://650782130948.signin.aws.amazon.com/console    Ravi
+
+
+
+
+
+
+import boto3
+
+aws_access_key = "youraccess"
+aws_secret_key = "yoursecret"
+bucket_name = "giri28062025"
+
+
+s3 = boto3.client('s3',aws_access_key_id = aws_access_key , aws_secret_access_key=aws_secret_key)
+print(s3)
+
+
+response = s3.list_objects_v2(Bucket = bucket_name)
+
+print(response)
+
+if 'Contents' in response:
+    for object in response['Contents']:
+        print(object['Key'])
+
+
+######################
+#    display files from bucket
+#    display all the buckets
+#.   uploading a file
+######################
+
+
+
+
+import boto3
+
+aws_access_key = "youraccess"
+aws_secret_key = "yourkey"
+bucket_name = "giri28062025"
+
+
+s3 = boto3.client('s3',aws_access_key_id = aws_access_key , aws_secret_access_key=aws_secret_key)
+print(s3)
+
+
+response = s3.list_objects_v2(Bucket = bucket_name)
+
+print(response)
+
+if 'Contents' in response:
+    for object in response['Contents']:
+        print(object['Key'])
+
+
+#### list buckets
+print("################# display all buckets #################")
+response = s3.list_buckets()
+print("S3 Buckets:")
+for bucket in response['Buckets']:
+    print(bucket['Name'])
+
+print("################# file uploading #################")
+filename = "employee.csv"
+### upload file
+s3.upload_file(filename,bucket_name,filename)
+print("file uploaded")
+
+
+
