@@ -362,7 +362,7 @@ There are two types of libraries
 
 1. builtin library
 -----------------
-builtin libraries are installed with pyhon. ( Eg.   csv , sys , os )
+builtin libraries are installed with python. ( Eg.   csv , sys , os )
 
 
 2. third party library 
@@ -449,3 +449,312 @@ warnings	   :Raise and handle warnings
 
 
 
+database handling
+----------------
+
+Python comes with inbuilt database called sqlite
+
+sqlite is the light weighted database
+light weighted architecture
+
+
+mysql database
+
+
+connecting to database
+----------------------
+step1: open the connection
+step2: define query
+step3: execute query
+step4: capture output
+step5: close the connection
+
+
+
+
+open mysql command line client
+-------------------------------
+
+
+step1: create database
+----------------
+create database empdb;
+
+
+step2:  access your database
+----------------------------
+use empdb;
+
+step3 : create table 
+--------------------
+create table employee ( workclass varchar(100) , education varchar(100)) ;
+
+step4: insert few records 
+------------------------
+insert into employee values('private' , 'graduation');
+insert into employee values('public' , 'btech');
+
+step5:
+------
+commit;
+
+step6 
+-------
+select * from employee;
+
+
+
+
+client1 :   
+
+requirement : 3.12
+
+
+client2 :
+requirement : 3.11
+
+client3:
+requirement : 3.13
+
+
+requirement : 3.12
+
+
+virtual environment
+---------------------
+
+we dont disturb the base setup( global python)
+
+
+
+
+Python 3.12.5    
+Python 3.12.5   
+
+
+
+creating virtual environment
+----------------------------
+
+python -m venv myenv1
+
+
+activate virtual environment
+-----------------------------
+
+for windows: myenv1\Scripts\Activate
+
+for mac    : source ./myenv1/bin/activate
+
+deactivating virtual environment
+---------------------------
+deactivate
+
+
+
+user defined functions
+lambda functions 
+web scrapping
+
+
+
+function | definition ( python) | block | routine | submodule
+----------------------------------------------------
+- code reusability
+- define block once and call it for multiple times.
+
+
+def display():
+    print("this is user defined function")
+
+display()
+
+
+different ways of passing arguments
+--------------------------------
+fixed arguments
+default arguments
+variable length arguments
+
+
+
+modular programming
+-------------------
+
+
+1. connecting to db 
+2. reading the file 
+3. defining query 
+4. inserting records
+5. closing connection
+
+
+import os
+import pymysql 
+
+def connect_db():
+    ####
+    retun coo
+
+def read_file():
+   ####
+
+def insert_records():
+   ####
+
+def close_connection():
+    ###
+
+connect_db()
+read_file()
+insert_records()
+close_connection()
+
+
+
+python extensions
+-------------------
+abc.py    - python file
+-----------------
+- automations
+- programs
+
+abc.ipynb - Interactive PYthon NoteBook
+---------------------
+- data analytics
+- data science related
+- line by line execution
+
+
+
+In the space of data analytics
+-------------------------------
+pandas
+numpy
+scipy
+matplotlib
+seaborn
+
+
+
+
+
+
+pandas
+------
+series ( 1 -D)
+dataframes ( m rows n columns )( collection of series)
+
+
+    Agentic AI
+      |
+    Gen AI libraries
+      |
+    keras,pytorch  ( deep learning libraries)
+      |
+    sklearn ( machine learning algorithms)
+      |
+    matplotlib ( visualizations)
+      |
+    pandas
+      |
+    scipy 
+      |
+    numpy   ( low level library)( array operations )
+
+
+
+
+read_csv
+read_excel
+read_xml
+read_hdf
+read_sql
+read_html
+read_url
+read_sas
+read_json
+
+
+
+
+### re = regular expressions
+# matching     re.match()
+# substution   re.sub()
+# searching    #. re.searh()
+
+
+web scrapping
+--------------
+
+step1 : connect to url, check whether url is accessible or not.
+step2 : read html content
+
+
+
+
+REST APIs
+----------
+rest api ( backend programming)
+flask ( web development)
+
+
+procedural programming
+object oriented programming
+
+
+There are two types of programming
+---------------------------
+
+1. procedural programming
+
+2. object oriented programming
+
+
+OOP principles are common for all the languages
+
+class
+object
+access specifiers
+constructor
+escapsulation
+data hiding
+inheritance
+polymorphism
+- function overloading
+- operator overloading
+Abstraction
+
+
+class
+object
+
+
+class
+-------
+Class is like a blueprint of the house.
+Every class contains data members(attributes) and member functions( methods)
+
+object 
+----
+object is the instance of the class.
+
+
+self 
+-----
+self is the instance of object
+
+
+constructor
+-----------
+constructor in python starts with __init__
+** constructor is a method which is invoked automatically when object is created
+
+
+
+
+unitest library ( default)
+pytest
+doctest
+noise2
+robot 
